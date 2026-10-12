@@ -24,7 +24,7 @@ Esta es una API REST desarrollada con Spring Boot y H2 Database (en memoria) par
 ### 1. Registrar un avistamiento (POST)
 Crea un nuevo registro. Retorna código `201` si es exitoso, o `400` si faltan datos obligatorios.
 
-    curl -X POST http://localhost:8081/avistamientos \-H "Content-Type: application/json" \-d '{"especie": "Colibrí", "lugar": "Cerro de Monserrate", "fecha": "2026-10-11", "observador": "Juan Pérez"}'
+    curl -X POST http://localhost:8081/avistamientos -H "Content-Type: application/json" -d "{\"especie\":\"Colibrí\",\"lugar\":\"Cerro de Monserrate\",\"fecha\":\"2026-10-11\",\"observador\":\"Juan Pérez\"}"
 
 ### 2. Listar todos los avistamientos (GET)
 Retorna código `200` con la lista de avistamientos en formato JSON.
@@ -39,7 +39,7 @@ Retorna código `200` con los datos del avistamiento, o `404` si el ID no existe
 ### 4. Actualizar un avistamiento (PUT)
 Modifica un registro existente. Retorna código `200` si es exitoso, o `404` si el ID no existe.
 
-    curl -X PUT http://localhost:8081/avistamientos/1 \-H "Content-Type: application/json" \-d '{"especie": "Colibrí", "lugar": "Jardín Botánico", "fecha": "2026-10-11", "observador": "Juan Pérez"}'
+    curl -X PUT http://localhost:8081/avistamientos/1 -H "Content-Type: application/json" -d "{\"especie\":\"Colibrí\",\"lugar\":\"Jardín Botánico\",\"fecha\":\"2026-10-11\",\"observador\":\"Juan Pérez\"}"
 
 ### 5. Eliminar un avistamiento (DELETE)
 Elimina un registro por su ID. Retorna código `204` (No Content) si es exitoso, o `404` si el ID no existe.
