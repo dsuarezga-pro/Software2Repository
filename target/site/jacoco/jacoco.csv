@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+api-avistamientos,com.aves.api,ApiAvistamientosApplication,5,3,0,0,2,1,1,1,1,1
+api-avistamientos,com.aves.api.exception,RecursoNoEncontradoException,0,4,0,0,0,2,0,1,0,1
+api-avistamientos,com.aves.api.exception,GlobalExceptionHandler,0,41,0,0,0,7,0,4,0,4
+api-avistamientos,com.aves.api.dto,ResumenEspecieDTO,23,0,0,0,10,0,5,0,5,0
+api-avistamientos,com.aves.api.dto,AvistamientoDTO,0,38,0,0,0,17,0,11,0,11
+api-avistamientos,com.aves.api.service,AvistamientoService,43,127,1,1,5,27,4,9,3,9
+api-avistamientos,com.aves.api.controller,AvistamientoController,16,44,0,0,3,11,3,5,3,5
+api-avistamientos,com.aves.api.model,Avistamiento,0,56,0,0,0,24,0,12,0,12
+api-avistamientos,com.aves.api.util,RelojSistema,0,5,0,0,0,2,0,2,0,2
+api-avistamientos,com.aves.api.util,ValidadorDeAvistamiento,5,68,4,14,1,13,4,7,0,2

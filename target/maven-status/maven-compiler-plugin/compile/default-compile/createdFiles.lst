@@ -1,0 +1,12 @@
+com\aves\api\util\Reloj.class
+com\aves\api\repository\AvistamientoRepository.class
+com\aves\api\exception\GlobalExceptionHandler.class
+com\aves\api\service\AvistamientoService.class
+com\aves\api\util\RelojSistema.class
+com\aves\api\ApiAvistamientosApplication.class
+com\aves\api\exception\RecursoNoEncontradoException.class
+com\aves\api\model\Avistamiento.class
+com\aves\api\dto\ResumenEspecieDTO.class
+com\aves\api\controller\AvistamientoController.class
+com\aves\api\dto\AvistamientoDTO.class
+com\aves\api\util\ValidadorDeAvistamiento.class

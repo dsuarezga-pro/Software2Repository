@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AvistamientoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">api-avistamientos</a> &gt; <a href="index.source.html" class="el_package">com.aves.api.controller</a> &gt; <span class="el_source">AvistamientoController.java</span></div><h1>AvistamientoController.java</h1><pre class="source lang-java linenums">package com.aves.api.controller;
+
+import com.aves.api.dto.AvistamientoDTO;
+import com.aves.api.dto.ResumenEspecieDTO;
+import com.aves.api.service.AvistamientoService;
+import com.aves.api.util.ValidadorDeAvistamiento;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@CrossOrigin(origins = &quot;*&quot;)
+@RestController
+@RequestMapping(&quot;/avistamientos&quot;)
+public class AvistamientoController {
+
+	private final AvistamientoService service;
+	private final ValidadorDeAvistamiento validador; // Se agrega el validador
+
+	// Se inyecta el validador en el constructor
+<span class="fc" id="L23">	public AvistamientoController(AvistamientoService service, ValidadorDeAvistamiento validador) {</span>
+<span class="fc" id="L24">		this.service = service;</span>
+<span class="fc" id="L25">		this.validador = validador;</span>
+<span class="fc" id="L26">	}</span>
+
+	// GET /avistamientos (Lista todos - Código 200)
+	@GetMapping
+	public ResponseEntity&lt;List&lt;AvistamientoDTO&gt;&gt; obtenerTodos() {
+<span class="fc" id="L31">		return ResponseEntity.ok(service.obtenerTodos());</span>
+	}
+
+	// GET /avistamientos/{id} (Ver uno - Código 200 o 404)
+	@GetMapping(&quot;/{id}&quot;)
+	public ResponseEntity&lt;AvistamientoDTO&gt; obtenerPorId(@PathVariable Long id) {
+<span class="nc" id="L37">		return ResponseEntity.ok(service.obtenerPorId(id));</span>
+	}
+
+	// POST /avistamientos (Crear - Código 201 o 400)
+	@PostMapping
+	public ResponseEntity&lt;AvistamientoDTO&gt; crear(@Valid @RequestBody AvistamientoDTO dto) {
+		// 1. Llamamos a la regla de negocio para validar los datos
+<span class="fc" id="L44">		validador.validar(dto);</span>
+
+		// 2. Si todo es correcto, se crea el avistamiento
+<span class="fc" id="L47">		return ResponseEntity.status(HttpStatus.CREATED).body(service.crear(dto));</span>
+	}
+
+	// PUT /avistamientos/{id} (Actualizar - Código 200 o 404)
+	@PutMapping(&quot;/{id}&quot;)
+	public ResponseEntity&lt;AvistamientoDTO&gt; actualizar(@PathVariable Long id, @Valid @RequestBody AvistamientoDTO dto) {
+		// 1. Llamamos a la regla de negocio para validar los datos
+<span class="fc" id="L54">		validador.validar(dto);</span>
+
+		// 2. Si todo es correcto, se actualiza el avistamiento
+<span class="fc" id="L57">		return ResponseEntity.ok(service.actualizar(id, dto));</span>
+	}
+
+	// DELETE /avistamientos/{id} (Eliminar - Código 204 o 404)
+	@DeleteMapping(&quot;/{id}&quot;)
+	public ResponseEntity&lt;Void&gt; eliminar(@PathVariable Long id) {
+<span class="fc" id="L63">		service.eliminar(id);</span>
+<span class="fc" id="L64">		return ResponseEntity.noContent().build();</span>
+	}
+
+	// GET /avistamientos/resumen (Punto Bonus - Código 200)
+	@GetMapping(&quot;/resumen&quot;)
+	public ResponseEntity&lt;List&lt;ResumenEspecieDTO&gt;&gt; obtenerResumen() {
+<span class="nc" id="L70">		return ResponseEntity.ok(service.obtenerResumenPorEspecie());</span>
+	}
+
+	// Manejador de excepciones: atrapa los errores del validador y devuelve 400 Bad
+	// Request
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity&lt;String&gt; manejarValidacion(IllegalArgumentException ex) {
+<span class="nc" id="L77">		return ResponseEntity.badRequest().body(ex.getMessage());</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

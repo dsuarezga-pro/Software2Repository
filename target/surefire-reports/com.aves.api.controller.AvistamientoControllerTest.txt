@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.aves.api.controller.AvistamientoControllerTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.53 s -- in com.aves.api.controller.AvistamientoControllerTest

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValidadorDeAvistamiento.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">api-avistamientos</a> &gt; <a href="index.source.html" class="el_package">com.aves.api.util</a> &gt; <span class="el_source">ValidadorDeAvistamiento.java</span></div><h1>ValidadorDeAvistamiento.java</h1><pre class="source lang-java linenums">package com.aves.api.util;
+
+import com.aves.api.dto.AvistamientoDTO;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ValidadorDeAvistamiento {
+
+	private final Reloj reloj;
+
+<span class="fc" id="L11">	public ValidadorDeAvistamiento(Reloj reloj) {</span>
+<span class="fc" id="L12">		this.reloj = reloj;</span>
+<span class="fc" id="L13">	}</span>
+
+	public void validar(AvistamientoDTO dto) {
+<span class="pc bpc" id="L16" title="1 of 6 branches missed.">		if (dto.getEspecie() == null || dto.getEspecie().trim().length() &lt; 3 || dto.getEspecie().trim().length() &gt; 50) {</span>
+<span class="fc" id="L17">			throw new IllegalArgumentException(&quot;La especie debe tener entre 3 y 50 caracteres.&quot;);</span>
+		}
+<span class="pc bpc" id="L19" title="1 of 4 branches missed.">		if (dto.getLugar() == null || dto.getLugar().trim().isEmpty()) {</span>
+<span class="fc" id="L20">			throw new IllegalArgumentException(&quot;El lugar no puede estar vacío.&quot;);</span>
+		}
+<span class="pc bpc" id="L22" title="1 of 4 branches missed.">		if (dto.getObservador() == null || dto.getObservador().trim().isEmpty()) {</span>
+<span class="fc" id="L23">			throw new IllegalArgumentException(&quot;El observador no puede estar vacío.&quot;);</span>
+		}
+
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">		if (dto.getFecha() == null) {</span>
+<span class="nc" id="L27">			throw new IllegalArgumentException(&quot;El formato de fecha debe ser AAAA-MM-DD y no estar vacía.&quot;);</span>
+		}
+
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if (dto.getFecha().isAfter(reloj.hoy())) {</span>
+<span class="fc" id="L31">			throw new IllegalArgumentException(&quot;La fecha no puede ser posterior a hoy.&quot;);</span>
+		}
+<span class="fc" id="L33">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
